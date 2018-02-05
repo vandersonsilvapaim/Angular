@@ -14,10 +14,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
-  }
+    console.log('init DashboardComponent');
+  } 
+  
+  ngOnDestroy(): void {
+    console.log('Destroy DashboardComponent'); 
+  } 
 
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
+  
 }

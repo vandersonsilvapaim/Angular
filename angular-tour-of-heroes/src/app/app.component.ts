@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tour of Heroes';
+
+   
+  ngOnDestroy(): void {
+    console.log('Destroy appComponent'); 
+  }
+
+  ngOnInit(): void { 
+    console.log('init app');
+  }
 }

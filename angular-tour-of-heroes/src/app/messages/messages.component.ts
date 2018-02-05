@@ -9,6 +9,13 @@ export class MessagesComponent implements OnInit {
 
   constructor(public messageService: MessageService) { }
 
-  ngOnInit() {}
+   
+  ngOnDestroy(): void {
+    console.log('Destroy messageComponent'); 
+  }
+
+  ngOnInit(): void { 
+    console.log('init menssage');
+  }
 
 }

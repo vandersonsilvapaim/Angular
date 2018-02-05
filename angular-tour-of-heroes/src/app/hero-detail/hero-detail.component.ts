@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { Hero } from '../hero';
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
 
   @Input() hero: Hero;
 
@@ -20,8 +20,13 @@ export class HeroDetailComponent implements OnInit {
     private location: Location
   ) { }
 
+  ngOnDestroy(): void {
+    console.log('Destroy detail'); 
+  }
+
   ngOnInit(): void {
     this.getHero();
+    console.log('init detail');
   }
 
   getHero(): void {
@@ -33,5 +38,9 @@ export class HeroDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  
+
+  save(): void {
+    this.heroService.updateHero(this.hero)
+      .subscribe(() => this.goBack());
+  }
 }
